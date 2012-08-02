@@ -39,3 +39,59 @@ class Foo{
 	public function __toString(){ return (string)$this->id; }
 
 }
+
+Saving an object from class Foo
+===
+
+To save an object is very simple, just create an instance like:
+
+$foo = new Foo();
+$foo->setBar('myfoo');
+
+$ppm = new PPM();
+$foo->setId($ppm->save($foo));
+
+echo $foo->getId();
+
+Updating an object
+===
+
+To update an object you just need to retrieve the object set the new values and call the update function
+
+$ppm = new PPM();
+$foo = reset( $ppm->search( 'Foo', array('id'=>1) ) );
+
+$foo->setBar('new value');
+
+$ppm->update($foo);
+
+Deleting an object
+===
+
+To delete an object you just need to retrieve the object and call the delete function
+
+$ppm = new PPM();
+$foo = reset( $ppm->search( 'Foo', array('id'=>1) ) );
+
+$ppm->delete($foo);
+
+Searching objects by params
+===
+
+To search objects based on parameters, you just need to pass the values to function search, see below:
+
+$ppm = new PPM();
+
+Searching Foo objects that the property bar is equal to 'yumi'
+$fooCollection = $ppm->search('Foo', array('bar'=>'yumi') ); //the result is an array of matched objects
+
+Searching Foo object by id
+$fooCollection = $ppm->search('Foo', array('id'=>1) ); //the result is an array of matched objects
+
+The parameters accepted by this functions are: $ppm->search( classname, properties/values, pageoffset, quantity, orderby );
+
+Where classname is the name of the Class/Table to search
+properties/values is an array where the index represents the attribute name, and the value is the search to match
+pageoffset is an integer indicating the number of page in the pagination process
+quantity is the number of records to fetch
+orderby is an array with the attribute to order as the index and the type "ASC" or "DESC" to order like: array('id'=>'ASC')
