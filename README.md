@@ -91,7 +91,11 @@ $fooCollection = $ppm->search('Foo', array('id'=>1) ); //the result is an array 
 The parameters accepted by this functions are: $ppm->search( classname, properties/values, pageoffset, quantity, orderby );
 
 Where classname is the name of the Class/Table to search
+
 properties/values is an array where the index represents the attribute name, and the value is the search to match
+
 pageoffset is an integer indicating the number of page in the pagination process
+
 quantity is the number of records to fetch
+
 orderby is an array with the attribute to order as the index and the type "ASC" or "DESC" to order like: array('id'=>'ASC')
